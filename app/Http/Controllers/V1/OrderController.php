@@ -121,6 +121,11 @@ class OrderController extends BaseApiController
                 $product->reduceStock($qty, $order->id, "ORDER", TRUE);
             }
 
+            $paymentTime = $request->input('payment_time', 0);
+
+            //simulate to complete payment .
+            sleep($paymentTime);
+
             // save detail
             $order->orderDetail()->saveMany($details);
             // update total order
