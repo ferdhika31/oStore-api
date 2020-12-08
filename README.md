@@ -77,7 +77,7 @@ php artisan product:generate
 
 #### Run parallel testing with paratest
 ```bash
-./vendor/bin/paratest -p8 .\tests\Feature\Order\
+./vendor/bin/paratest -p8 tests/Feature/Order
 ```
 
 ## License
