@@ -20,6 +20,20 @@ class Product extends Model
     ];
 
     /**
+     * @var string[]
+     */
+    protected $appends = [
+        'selling_price'
+    ];
+
+    /**
+     * @return mixed
+     */
+    public function getSellingPriceAttribute(){
+        return $this->price-$this->discount;
+    }
+
+    /**
      * @param $request
      * @return mixed
      */
