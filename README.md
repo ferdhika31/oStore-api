@@ -33,6 +33,12 @@ cd oStore-api
 cp .env.example .env
 ```
 
+### Install dependency
+
+```bash
+composer install
+```
+
 ### Generate APP Key
 ```bash
 php artisan key:generate
@@ -43,12 +49,6 @@ php artisan key:generate
 - Fill **DB_DATABASE**
 - Fill **DB_USERNAME**
 - Fill **DB_PASSWORD**
-
-### Install dependency
-
-```bash
-composer install
-```
 
 ### Migrate and install Laravel Passport
 
