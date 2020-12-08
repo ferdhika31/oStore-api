@@ -13,7 +13,7 @@ class Order1Test extends TestCase
     public function testUser1Order()
     {
         $user = User::factory(\App\Models\User::class)->create();
-        $product = Product::where('stock','!=',0)->first();
+        $product = Product::first();
 
         // time create order
         // sleep(0);
