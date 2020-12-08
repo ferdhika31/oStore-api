@@ -33,9 +33,12 @@ cd oStore-api
 cp .env.example .env
 ```
 
-### Fill .env Files
+### Generate APP Key
+```bash
+php artisan key:generate
+```
 
-- Fill **APP_KEY**
+### Fill Database Configuration 
 - Fill **DB_HOST**
 - Fill **DB_DATABASE**
 - Fill **DB_USERNAME**
