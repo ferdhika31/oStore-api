@@ -28,7 +28,7 @@ Route::prefix('v1')->group( function () {
     Route::post('products/{id}/stock/update', [ProductController::class, 'updateStock']);
     Route::resource('products', ProductController::class)->except(['destroy', 'create', 'edit']);
 
-    Route::resource('orders', OrderController::class)->middleware('auth:api')->except(['destroy', 'create', 'edit']);
+    Route::resource('orders', OrderController::class)->except(['destroy', 'create', 'edit']);
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

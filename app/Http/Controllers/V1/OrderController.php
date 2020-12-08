@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\User;
 use DB;
 use Auth;
 use Validator;
@@ -29,14 +30,20 @@ class OrderController extends BaseApiController
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
 
         $validator = Validator::make($request->all(), [
+            'user_id' => 'required',
             'detail' => 'required'
         ]);
 
         if($validator->fails()){
             return $this->returnData(['errors' =>  $validator->errors()], "Validation errors.", 422);
+        }
+        
+        $user = User::find($request->user_id);
+
+        if(empty($user)){
+            return $this->returnStatus(false, "User not found.", 404);
         }
 
         // validation product
