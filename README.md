@@ -8,9 +8,9 @@ Backend Engineer Assesment. Problem 2.
 - [x] The online store will hold a flash sale, in which customers will try to buy a Product at a heavily discounted price.
 - [x] The system must be able to prevent a negative Inventory quantity value.
 
-## Postman Docummentation API
+## Postman Documentation API
 
-Check [Postman Docummentation](https://documenter.getpostman.com/view/12023164/TVmS8awr) 
+Check [Postman Documentation](https://documenter.getpostman.com/view/12023164/TVmS8awr) 
 
 BaseURL [ostore.dika.web.id](http://ostore.dika.web.id) 
 
@@ -79,7 +79,3 @@ php artisan product:generate
 ```bash
 ./vendor/bin/paratest -p8 tests/Feature/Order
 ```
-
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
