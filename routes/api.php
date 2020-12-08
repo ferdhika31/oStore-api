@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\V1\AuthController;
 use App\Http\Controllers\V1\ProductController;
 use App\Http\Controllers\V1\OrderController;
+use App\Http\Controllers\V1\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::prefix('v1')->group( function () {
     Route::post('products/{id}/stock/reduce', [ProductController::class, 'reduceStock']);
     Route::post('products/{id}/stock/update', [ProductController::class, 'updateStock']);
     Route::resource('products', ProductController::class)->except(['destroy', 'create', 'edit']);
-
+    Route::resource('users', UserController::class)->except(['destroy', 'create', 'edit', 'update']);
     Route::resource('orders', OrderController::class)->except(['destroy', 'create', 'edit']);
 });
 
