@@ -24,7 +24,6 @@ trait SearchableTrait
 
                 $requestKey = "q_" . $key;
                 if (isset($request[$requestKey]) && $request[$requestKey] != "") {
-
                     $qRequest = $request[$requestKey];
                     if ($value == "LIKE_FIRST") {
                         $qRequest = "%" . $qRequest;

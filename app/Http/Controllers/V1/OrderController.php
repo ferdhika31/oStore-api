@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\V1;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
@@ -39,7 +40,7 @@ class OrderController extends BaseApiController
         if($validator->fails()){
             return $this->returnData(['errors' =>  $validator->errors()], "Validation errors.", 422);
         }
-        
+
         $user = User::find($request->user_id);
 
         if(empty($user)){
@@ -77,7 +78,6 @@ class OrderController extends BaseApiController
         }
 
         try {
-            // 
             DB::beginTransaction();
 
             // create order temp
@@ -99,14 +99,14 @@ class OrderController extends BaseApiController
                 // https://laravel.com/docs/8.x/queries#pessimistic-locking
                 $unSoldProduct = DB::table('products')
                     ->where('stock','!=', 0)
-                    ->lockForUpdate() // MySQL Pessimistic locking 
+                    ->lockForUpdate() // MySQL Pessimistic locking
                     ->find($productId);
 
                 if(empty($unSoldProduct)){
                     return $this->returnStatus(false, "Sorry, product {$product->name} sold out.", 200);
                 }
 
-                // order detail temp 
+                // order detail temp
                 $details[] = new OrderDetail([
                     'product_id' => $productId,
                     'price' => $product->price,
@@ -132,7 +132,7 @@ class OrderController extends BaseApiController
             $order->total = $instance['total'];
             $order->save();
 
-            // if everything thats fine, user success buy the product and insert order data commit
+            // if everything that's fine, the user will success buy the product and order data inserted
             DB::commit();
 
             return $this->returnData($order, "Order Completed.");

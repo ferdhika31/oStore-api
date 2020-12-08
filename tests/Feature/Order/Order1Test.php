@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class Order1Test extends TestCase
 {
-    public function testContainerGetWithAuth()
+    public function testUser1Order()
     {
         $user = User::factory(\App\Models\User::class)->create();
         $product = Product::where('stock','!=',0)->first();
