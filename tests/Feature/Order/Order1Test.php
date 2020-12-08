@@ -1,8 +1,7 @@
 <?php
+namespace Tests\Feature\Order;
 
-use Laravel\Lumen\Testing\DatabaseMigrations;
-use Laravel\Lumen\Testing\DatabaseTransactions;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\ProductStock;
