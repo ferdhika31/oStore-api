@@ -1,6 +1,6 @@
 # oStore API
 
-Backend Engineer Assesment. Problem 2.
+Backend Engineer Assessment. Problem 2.
 
 ## Business Requirements
 
@@ -14,53 +14,55 @@ Check [Postman Documentation](https://documenter.getpostman.com/view/12023164/TV
 
 BaseURL [ostore.dika.web.id](http://ostore.dika.web.id) 
 
+## Setup With Docker
 
-## Install
+### Setup
 
-### Clone Project
+- `git clone https://github.com/ferdhika31/oStore-api.git`
+- `cd oStore-api`
+- `docker-compose build app`
+- `docker-compose up -d`
+- `docker-compose exec app composer install`
+- `cp .env.example .env` or `copy .env.example .env`
+- `docker-compose exec app php artisan key:generate`
+- `docker-compose exec app php artisan migrate --seed`
+
+Now that all containers are up, access from browser `localhost:8000`
+
+### Running test suite race condition:
+
+#### Reset data in Database
+First, reset data in database.
 ```bash
-# Clone this repo
-git clone https://github.com/ferdhika31/oStore-api.git
+docker-compose exec app php artisan migrate:fresh --seed
 ```
 
-### Change Directory to Project
+#### Generate data product
 ```bash
-cd oStore-api
+docker-compose exec app php artisan product:generate
 ```
 
-### Copy .env.example file
+#### Run parallel testing with paratest
 ```bash
-cp .env.example .env
+docker-compose exec app ./vendor/bin/paratest -p8 tests/Feature/Order
 ```
 
-### Install dependency
+### Stop 
+- `docker-compose stop` to stop app
 
-```bash
-composer install
-```
 
-### Generate APP Key
-```bash
-php artisan key:generate
-```
+## Setup Without Docker
 
-### Fill Database Configuration 
-- Fill **DB_HOST**
-- Fill **DB_DATABASE**
-- Fill **DB_USERNAME**
-- Fill **DB_PASSWORD**
+### Setup
 
-### Migrate and install Laravel Passport
-
-```bash
-# Create new tables for Passport
-php artisan migrate --seed
-```
-
-### Start server
-```bash
-php artisan serve
-```
+- `git clone https://github.com/ferdhika31/oStore-api.git`
+- `cd oStore-api`
+- `composer install`
+- `cp .env.example .env` or `copy .env.example .env`
+- `php artisan key:generate`
+- Edit database configuration
+- `php artisan migrate --seed`
+- `php artisan serve`
 
 ### Running test suite race condition:
 
