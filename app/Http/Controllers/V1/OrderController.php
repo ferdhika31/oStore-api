@@ -96,10 +96,9 @@ class OrderController extends BaseApiController
                 $product = Product::find($productId);
                 $qty = !empty($detail->qty) ? $detail->qty : 1;
 
-                // https://laravel.com/docs/8.x/queries#pessimistic-locking
                 $unSoldProduct = DB::table('products')
                     ->where('stock','!=', 0)
-                    ->lockForUpdate() // MySQL Pessimistic locking
+                    ->lockForUpdate()
                     ->find($productId);
 
                 if(empty($unSoldProduct)){
