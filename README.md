@@ -20,10 +20,10 @@ BaseURL [ostore.dika.web.id](http://ostore.dika.web.id)
 
 - `git clone https://github.com/ferdhika31/oStore-api.git`
 - `cd oStore-api`
+- `cp .env.example .env` or `copy .env.example .env`
 - `docker-compose build app`
 - `docker-compose up -d`
 - `docker-compose exec app composer install`
-- `cp .env.example .env` or `copy .env.example .env`
 - `docker-compose exec app php artisan key:generate`
 - `docker-compose exec app php artisan migrate --seed`
 
