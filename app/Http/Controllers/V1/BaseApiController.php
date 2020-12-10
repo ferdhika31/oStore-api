@@ -18,6 +18,7 @@ class BaseApiController extends Controller
      */
     public function returnData($data, $message, $statusCode = 200) {
         return response()->json([
+            'status' => true,
             'data' => $data,
             'message' => $message,
         ], $statusCode);
@@ -30,6 +31,7 @@ class BaseApiController extends Controller
      */
     public function returnError($er, $statusCode = 400) {
         return response()->json([
+            'status' => false,
             'message' => $er->getMessage(),
         ], $statusCode);
     }
