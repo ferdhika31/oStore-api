@@ -22,7 +22,6 @@ class Order1Test extends TestCase
         $response = $this->call('POST', '/api/v1/orders', [
             "user_id" => $user->id,
             "note" => "Jangan dikasih ke siapa2",
-            "payment_time" => 2, // in second
             "detail" => [
                 [
                     "product_id" => $product->id,
@@ -30,10 +29,7 @@ class Order1Test extends TestCase
                 ]
             ]
         ]);
-
-        $this->assertDatabaseHas('products', [
-            'id' => $product->id,
-            'stock' => 0
-        ]);
+        // order success if status true
+        $this->assertEquals(json_decode($response->getContent())->status, true);
     }
 }
